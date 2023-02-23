@@ -1,0 +1,7 @@
+export interface Group {
+  id: string;
+  name: string;
+  categoryId: number;
+  category: string;
+  createdOnUtc: Date;
+}
