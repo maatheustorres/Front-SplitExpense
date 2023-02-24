@@ -10,16 +10,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ExpenseComponent } from './core/expense/expense.component';
 import { NavBarComponent } from './utils/nav-bar/nav-bar.component';
-import { GroupComponent } from './core/group/group.component';
+import { AuthGuard } from './utils/guards/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExpenseComponent,
     NavBarComponent,
-    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +29,7 @@ import { GroupComponent } from './core/group/group.component';
     MatSidenavModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

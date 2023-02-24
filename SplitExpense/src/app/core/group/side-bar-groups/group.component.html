@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+  <mat-sidenav *ngIf="pagination" opened mode="side">
+    <mat-list *ngIf="pagination.totalCount > 0">
+      <mat-list-item><b>{{pagination.totalCount}} grupos recentes</b></mat-list-item>
+      <mat-list-item *ngFor="let item of pagination.items">{{item.name}}</mat-list-item>
+      <mat-list-item *ngIf="pagination.totalCount > 10"><a href="">Ver todos os grupos</a></mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="pagination.totalCount === 0">
+      <mat-list-item>Nenhum grupo encontrado</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-expense></app-expense>
+  </mat-sidenav-content>
+</mat-sidenav-container>
