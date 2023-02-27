@@ -49,6 +49,29 @@ export class AccountService {
     )
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+    this.router.navigate(['']);
+  }
+
+  loadCurrentUser(token: string) {
+    if(token === null) {
+      this.currentUserSource.next(null);
+      return;
+    }
+
+    let localUser = localStorage.getItem('user') as string;
+    let user = JSON.parse(localUser);
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', user.id);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUserSource.next(user);
+  }
+
   isLoggedIn() {
     return localStorage.getItem('user') != null;
   }

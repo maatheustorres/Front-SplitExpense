@@ -3,19 +3,17 @@
     <h1>SplitExpense</h1>
       <span class="spacer"></span>
       <span>
-        <!-- <ng-container *ngIf="(currentUser$ | async) === null"> -->
+        <ng-container *ngIf="(currentUser$ | async) === null">
           <a mat-button routerLink="account/login">Entrar</a>
           <a mat-button routerLink="account/register">Cadastre-se</a>
-        <!-- </ng-container> -->
-        <!-- <ng-container *ngIf="currentUser$ | async">
+        </ng-container>
+        <ng-container *ngIf="(currentUser$ | async)">
           <button mat-button [matMenuTriggerFor]="menu">{{(currentUser$ | async)?.firstName}} <mat-icon>keyboard_arrow_down</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a mat-menu-item routerLink="rating/rating-user" *ngIf="ratingUser"><mat-icon style="color: gold;">star</mat-icon>{{ratingUser.rating}}</a>
               <a mat-menu-item routerLink="account/edit"><mat-icon>person</mat-icon>Perfil</a>
-              <a mat-menu-item routerLink="payment/payment-method"><mat-icon>credit_card</mat-icon>Pagamento</a>
               <button mat-menu-item (click)="logout()"><mat-icon>exit_to_app</mat-icon> Sair</button>
             </mat-menu>
-        </ng-container> -->
+        </ng-container>
       </span>
   </mat-toolbar-row>
 </mat-toolbar>

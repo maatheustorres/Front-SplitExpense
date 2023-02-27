@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from './core/account/account.service';
 import { GroupService } from './core/group/group.service';
 import { Pagination } from './models/pagination';
 
@@ -9,9 +10,14 @@ import { Pagination } from './models/pagination';
 })
 export class AppComponent implements OnInit  {
   title = 'SplitExpense';
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.loadCurrentUser();
   }
 
+  loadCurrentUser() {
+    const token = localStorage.getItem('token') as string;
+    this.accountService.loadCurrentUser(token);
+  }
 }
