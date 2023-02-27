@@ -26,7 +26,7 @@ export class AccountService {
     private router: Router) { }
 
   register(value: any) {
-    return this.http.post<User>(`${this.baseUrl}/register`, value, this.httpOptions).pipe(
+    return this.http.post<User>(`${this.baseUrl}/authentication/register`, value, this.httpOptions).pipe(
       map((user: User) => {
         if (user) {
           localStorage.setItem('token', user.token);

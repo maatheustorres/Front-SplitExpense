@@ -1,1 +1,65 @@
-<p>register works!</p>
+<div class="container">
+  <div class="mb-4">
+    <div class="text-center">
+      <b><h1>Cadastre-se</h1></b>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12" style="display: flex; justify-content: center;">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input type="text" matInput formControlName="firstName" required>
+              <mat-error>Nome é um campo obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Sobrenome</mat-label>
+              <input type="text" matInput formControlName="lastName" required>
+              <mat-error>Sobrenome é um campo obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput  formControlName="email" required>
+              <mat-error>E-mail é um campo obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error>Senha é um campo obrigatório</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('hasNumber')">A senha deve conter ao menos 1 número</mat-error>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('hasCapitalCase')">A senha deve conter ao menos 1 letra maiúscula</mat-error>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('hasSmallCase')">A senha deve conter ao menos 1 letra minúscula</mat-error>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('hasSpecialCharacters')">A senha deve conter ao menos 1 caracter especial</mat-error>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row between-xs" >
+              <button mat-raised-button
+                color="primary"
+                [disabled]="registerForm.invalid"
+                type="submit"
+                style="width:100%;">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

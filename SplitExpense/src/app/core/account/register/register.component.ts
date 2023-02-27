@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || ''
+    this.createRegisterForm();
   }
 
   createRegisterForm() {
@@ -31,14 +33,14 @@ export class RegisterComponent implements OnInit {
       lastName: [null, [Validators.required]],
       email: [null, [Validators.required, Validators
         .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
-        password: [null, Validators.compose([
-          Validators.required,
-          this.patternValidator(/\d/, {hasNumber: true}),
-          this.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
-          this.patternValidator(/[a-z]/, { hasSmallCase: true }),
-          this.patternValidator(/[$@$!%*?&]/, { hasSpecialCharacters: true }),
-          Validators.minLength(8)
-        ])]
+      password: [null, Validators.compose([
+        Validators.required,
+        this.patternValidator(/\d/, {hasNumber: true}),
+        this.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+        this.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        this.patternValidator(/[$@$!%*?&]/, { hasSpecialCharacters: true }),
+        Validators.minLength(8)
+      ])]
     })
   }
 
@@ -52,5 +54,14 @@ export class RegisterComponent implements OnInit {
 
       return valid ? null : error;
     }
+  }
+
+  onSubmit() {
+    this.accountService.register(this.registerForm.value).subscribe(() => {
+      this.router.navigateByUrl(this.returnUrl);
+    }, error => {
+      this.error = error.error;
+      console.log(this.error);
+    })
   }
 }

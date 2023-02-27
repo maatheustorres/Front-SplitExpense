@@ -20,11 +20,14 @@ export class GroupComponent implements OnInit {
   getGroupsByUserId() {
     const page = 1;
     const pageSize = 10;
-    this.groupService.getGroupsByUserId('E0F62196-2876-41EE-81E6-A17AEEC13A55', page, pageSize).subscribe(response => {
-      this.pagination = response;
-      console.log(this.pagination);
-    }, error => {
-      console.log(error);
-    })
+    const userId = localStorage.getItem('userId');
+    if(userId) {
+      this.groupService.getGroupsByUserId(userId, page, pageSize).subscribe(response => {
+        this.pagination = response;
+        console.log(this.pagination);
+      }, error => {
+        console.log(error);
+      })
+    }
   }
 }
