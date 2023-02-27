@@ -8,6 +8,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './utils/nav-bar/nav-bar.component';
@@ -27,7 +29,9 @@ import { AuthGuard } from './utils/guards/auth.guard';
     MatGridListModule,
     MatListModule,
     MatSidenavModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

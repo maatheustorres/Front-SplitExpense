@@ -38,6 +38,17 @@ export class AccountService {
     );
   }
 
+  login(value: any) {
+    return this.http.post<User>(`${this.baseUrl}/authentication/login`, value).pipe(
+      map((user: User) => {
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('userId', user.id);
+        localStorage.setItem('user', JSON.stringify(user));
+        this.currentUserSource.next(user)
+      })
+    )
+  }
+
   isLoggedIn() {
     return localStorage.getItem('user') != null;
   }
