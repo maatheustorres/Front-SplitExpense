@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row" style="width:50%">
+    <div class="col-xs-12" style="display: flex; justify-content: center">
+      <form
+        [formGroup]="groupForm"
+        style="width: 100%;"
+        (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <h1 class="text-center">COMEÇAR UM NOVO GRUPO</h1>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nome do Grupo</mat-label>
+            <input type="text" matInput formControlName="name" required>
+            <mat-error>Nome do grupo é obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" style="width: 99%">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category" required>
+            <mat-option value="1">Viagem</mat-option>
+            <mat-option value="2">Casa</mat-option>
+          </mat-select>
+          <mat-error>Categoria é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row between-xs">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              style="width: 100%;"
+              [disabled]="groupForm.invalid">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

@@ -73,6 +73,6 @@ export class AccountService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('user') != null;
+    return localStorage.getItem('token') != null;
   }
 }
