@@ -13,7 +13,6 @@ import { AddUsersRequest } from 'src/app/models/request/add-users-request';
 export class GroupService {
   baseUrl = environment.baseUrl;
 
-
   constructor(private http: HttpClient) { }
 
   createHttpOptions() {

@@ -1,0 +1,50 @@
+<div class="container" style="margin-top: 2em !important">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row between-xs" >
+        <button mat-raised-button color="primary">Adicionar despesa</button>
+        <a mat-raised-button routerLink="/home" color="primary"><mat-icon>home</mat-icon></a>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12">
+      <ng-container *ngIf="expenses">
+        <ng-container *ngFor="let item of expenses" >
+          <mat-accordion class="headers-align" multi>
+            <mat-expansion-panel expanded="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Pagar para: &nbsp;<b> {{item.userToReceive}}</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <b> Valor a pagar: {{item.totalExpense | currency: 'BRL'}}</b>
+                  <mat-icon *ngIf="item.paid" style="color:green">done</mat-icon>
+                  <mat-icon *ngIf="!item.paid" style="color:red">highlight_off</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p *ngFor="let user of item.userExpense">
+                <b>{{user.fullName}}</b> deve {{user.repay | currency: 'BRL'}} a <b>{{item.userToReceive}}</b>
+              </p>
+              <mat-divider></mat-divider>
+              <br>
+              <div class="row" *ngIf="!item.paid">
+                <div class="col-xs-12">
+                  <div class="row between-xs" >
+                    <button mat-raised-button color="primary">Quitar conta</button>
+                    <button mat-raised-button color="primary">Adicionar usuário</button>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!expenses">
+        <h2 class="text-center">Nenhuma despesa cadastrada! Comece utilizar clicando no botão Adicionar despesa.</h2>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
