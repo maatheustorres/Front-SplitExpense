@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UpdateExpenseRequest } from 'src/app/models/request/update-expense-request';
 import { Expense } from 'src/app/models/response/expense';
 import { ExpenseService } from '../expense.service';
 
@@ -12,6 +13,12 @@ export class ExpenseComponent implements OnInit {
 
   groupId = '';
   expenses!: Expense[];
+  updateExpenseRequest: UpdateExpenseRequest = {
+    expense: 0,
+    paid: false,
+    userId: '',
+    userGroupId: ''
+  }
 
   constructor(
     private expenseService: ExpenseService,
@@ -32,6 +39,19 @@ export class ExpenseComponent implements OnInit {
       console.log(this.expenses)
     }, error => {
       console.log(error)
+    })
+  }
+
+  updateExpense(expense: any) {
+    this.updateExpenseRequest.expense = expense.totalExpense;
+    this.updateExpenseRequest.paid = true;
+    this.updateExpenseRequest.userGroupId = expense.userGroupId;
+    this.updateExpenseRequest.userId = expense.userId;
+
+    return this.expenseService.paidExpense(expense.expenseId, this.updateExpenseRequest).subscribe(response => {
+      this.getExpensesByGroupId()
+    }, error => {
+      console.log(error);
     })
   }
 }
