@@ -7,5 +7,6 @@ export interface Expense {
   totalExpense: number;
   paid: boolean;
   userToReceive: string;
+  groupName: string;
   userExpense: UserExpense[];
 }

@@ -18,7 +18,8 @@ export class ExpenseComponent implements OnInit {
     paid: false,
     userId: '',
     userGroupId: ''
-  }
+  };
+  groupName = '';
 
   constructor(
     private expenseService: ExpenseService,
