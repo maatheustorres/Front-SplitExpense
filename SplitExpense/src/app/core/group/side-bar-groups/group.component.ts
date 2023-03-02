@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pagination } from 'src/app/models/pagination';
+import { Pagination } from 'src/app/models/response/pagination';
 import { GroupService } from '../group.service';
 
 @Component({

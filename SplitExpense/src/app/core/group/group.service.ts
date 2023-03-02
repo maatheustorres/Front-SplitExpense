@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Pagination } from 'src/app/models/pagination';
+import { Pagination } from 'src/app/models/response/pagination';
 import { environment } from 'src/environments/environment';
 import { CreateGroupRequest } from 'src/app/models/request/create-group-request';
-import { Group } from 'src/app/models/group';
-import { AddUsers } from 'src/app/models/add-users';
+import { Group } from 'src/app/models/response/group';
+import { AddUsers } from 'src/app/models/response/add-users';
 import { AddUsersRequest } from 'src/app/models/request/add-users-request';
 
 @Injectable({

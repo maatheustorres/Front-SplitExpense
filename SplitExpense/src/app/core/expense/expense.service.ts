@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Expense } from 'src/app/models/expense';
+import { Expense } from 'src/app/models/response/expense';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

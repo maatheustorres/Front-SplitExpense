@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Group } from 'src/app/models/group';
+import { Group } from 'src/app/models/response/group';
 import { CreateGroupRequest } from 'src/app/models/request/create-group-request';
 import { GroupService } from '../group.service';
 
