@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateExpenseRequest } from 'src/app/models/request/update-expense-request';
 import { Expense } from 'src/app/models/response/expense';
+import { UsersGroup } from 'src/app/models/response/users-group';
+import { GroupService } from '../../group/group.service';
 import { ExpenseService } from '../expense.service';
+import { AddExpenseDialogComponent } from './dialog/add-expense-dialog/add-expense-dialog.component';
 
 @Component({
   selector: 'app-expense',
@@ -12,6 +16,7 @@ import { ExpenseService } from '../expense.service';
 export class ExpenseComponent implements OnInit {
 
   groupId = '';
+  userGroupId = '';
   expenses!: Expense[];
   updateExpenseRequest: UpdateExpenseRequest = {
     expense: 0,
@@ -20,10 +25,14 @@ export class ExpenseComponent implements OnInit {
     userGroupId: ''
   };
   groupName = '';
+  users!: UsersGroup[];
+  ids!: string[];
 
   constructor(
     private expenseService: ExpenseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private groupService: GroupService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +42,7 @@ export class ExpenseComponent implements OnInit {
   getExpensesByGroupId() {
     this.route.paramMap.subscribe(response => {
       this.groupId = response.get('id') as string;
+      this.userGroupId = response.get('userGroupId') as string;
     })
 
     return this.expenseService.getExpensesByGroupId(this.groupId).subscribe(response => {
@@ -54,5 +64,39 @@ export class ExpenseComponent implements OnInit {
     }, error => {
       console.log(error);
     })
+  }
+
+  addExpense() {
+    return this.groupService.getUsersByGroupId(this.groupId).subscribe(response => {
+      this.users = response;
+      const userId = localStorage.getItem('userId');
+      this.users.forEach(() => {
+        const index = this.users.findIndex(user => user.userId == userId);
+        if(index > -1) {
+          this.users.splice(index, 1)
+        }
+      })
+      const dialogRef = this.dialog.open(AddExpenseDialogComponent, {
+        width: '20%',
+        data: {
+          groupId: this.groupId,
+          userGroupId: this.userGroupId,
+          userId: userId,
+          users: this.users,
+          buttonText: {
+            ok: 'Adicionar',
+            cancel: 'Cancelar'
+          }
+        }
+      })
+
+      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+        if(confirmed) {
+          this.getExpensesByGroupId()
+        }
+      }, error => {
+        console.log(error);
+      })
+    });
   }
 }

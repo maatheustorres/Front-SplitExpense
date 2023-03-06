@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Adicionar despesa</h1>
+<mat-dialog-content *ngIf="users" >
+  <form [formGroup]="expenseForm">
+    <mat-form-field appearance="fill">
+      <input type="number" matInput required formControlName="totalExpense" placeholder="0.00" width="100%" autocomplete="off">
+      <mat-error>Valor é um campo obrigatório</mat-error>
+      <mat-icon matPrefix>attach_money</mat-icon>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <h4>Adicionar usuários na despesa</h4>
+    <ul>
+      <li *ngFor="let item of users">
+        <mat-checkbox required color="primary" (change)="checkUsers(item.userId)">{{item.fullName}}</mat-checkbox>
+      </li>
+    </ul>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+    mat-raised-button
+    [disabled]="expenseForm.invalid"
+    color="primary"
+    tabindex="1"
+    (click)="createExpense()">{{confirmButtonText}}</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions>
+
+

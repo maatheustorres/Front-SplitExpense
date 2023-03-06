@@ -6,6 +6,7 @@ import { CreateGroupRequest } from 'src/app/models/request/create-group-request'
 import { Group } from 'src/app/models/response/group';
 import { AddUsers } from 'src/app/models/response/add-users';
 import { AddUsersRequest } from 'src/app/models/request/add-users-request';
+import { UsersGroup } from 'src/app/models/response/users-group';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class GroupService {
 
   addUsers(addUsersValue: AddUsersRequest) {
     return this.http.post<AddUsers>(`${this.baseUrl}/group/add`, addUsersValue, this.createHttpOptions());
+  }
+
+  getUsersByGroupId(groupId: string) {
+    return this.http.get<UsersGroup[]>(`${this.baseUrl}/group/users-group/${groupId}`, this.createHttpOptions());
   }
 }

@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="row between-xs" >
-        <button mat-raised-button color="primary">Adicionar despesa</button>
+        <button mat-raised-button color="primary" (click)="addExpense()">Adicionar despesa</button>
         <a mat-raised-button routerLink="/home" color="primary"><mat-icon>home</mat-icon></a>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <ng-container *ngIf="expenses">
         <ng-container *ngFor="let item of expenses" >
           <mat-accordion class="headers-align" multi>
-            <mat-expansion-panel expanded="true">
+            <mat-expansion-panel expanded="{{item.paid ? false : true}}">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   Pagar para: &nbsp;<b> {{item.userToReceive}}</b>
@@ -34,15 +34,13 @@
               </p>
               <mat-divider></mat-divider>
               <br>
-              <div class="row" *ngIf="!item.paid">
-                <div class="col-xs-12">
-                  <div class="row between-xs" >
-                    <button
-                      mat-raised-button
-                      color="primary"
-                      (click)="updateExpense(item)">Quitar conta</button>
-                    <button mat-raised-button color="primary">Adicionar usuário</button>
-                  </div>
+              <div class="row" *ngIf="!item.paid" >
+                <div class="col-xs-2" style="display: flex; justify-content: space-around; align-items:center;">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="updateExpense(item)">Quitar conta</button>
+                  <button mat-raised-button color="primary">Editar</button>
                 </div>
               </div>
             </mat-expansion-panel>

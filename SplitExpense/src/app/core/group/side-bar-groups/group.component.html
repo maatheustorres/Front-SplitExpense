@@ -10,7 +10,7 @@
     <mat-list *ngIf="pagination.totalCount > 0">
       <mat-list-item><b>{{pagination.totalCount}} grupos recentes</b></mat-list-item>
       <mat-list-item *ngFor="let item of pagination.items">
-        <a routerLink="/expense/expense-group/{{item.id}}" style="text-decoration: none; color: #000">
+        <a routerLink="/expense/expense-group/{{item.id}}/user-group/{{item.userGroupId}}" style="text-decoration: none; color: #000">
           {{item.name}}
         </a>
       </mat-list-item>

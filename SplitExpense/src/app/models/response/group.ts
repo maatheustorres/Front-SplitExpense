@@ -4,4 +4,5 @@ export interface Group {
   categoryId: number;
   category: string;
   createdOnUtc: Date;
+  userGroupId: string;
 }

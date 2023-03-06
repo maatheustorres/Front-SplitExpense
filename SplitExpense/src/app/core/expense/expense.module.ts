@@ -10,12 +10,17 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { ExpenseRoutingModule } from "./expense-routing.module";
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 import { ExpenseComponent } from "./expenses-group/expense.component";
+import { AddExpenseDialogComponent } from './expenses-group/dialog/add-expense-dialog/add-expense-dialog.component';
 
 @NgModule({
   declarations: [
-    ExpenseComponent
+    ExpenseComponent,
+    AddExpenseDialogComponent
   ],
   imports: [
     CommonModule,
@@ -28,10 +33,13 @@ import { ExpenseComponent } from "./expenses-group/expense.component";
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   exports: [
-    ExpenseComponent
+    ExpenseComponent,
+    AddExpenseDialogComponent
   ]
 })
 export class ExpenseModule {}
