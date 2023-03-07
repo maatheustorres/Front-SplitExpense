@@ -33,8 +33,12 @@ export class ExpenseService {
     return this.http.get<Expense[]>(`${this.baseUrl}/expense/${groupId}`, this.createHttpOptions());
   }
 
-  paidExpense(expenseId: string, updateExpenseRequest: UpdateExpenseRequest) {
+  updateExpense(expenseId: string, updateExpenseRequest: UpdateExpenseRequest) {
     return this.http.put(`${this.baseUrl}/expense/${expenseId}`, updateExpenseRequest, this.createHttpOptions());
+  }
+
+  updateSplitExpense(expenseId: string, expense: splitExpenseRequest) {
+    return this.http.put(`${this.baseUrl}/expense/splitexpense/update/${expenseId}`, expense, this.createHttpOptions());
   }
 
   createExpense(expense: CreateExpenseRequest) {

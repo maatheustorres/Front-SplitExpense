@@ -12,15 +12,17 @@ import { ExpenseRoutingModule } from "./expense-routing.module";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { ExpenseComponent } from "./expenses-group/expense.component";
 import { AddExpenseDialogComponent } from './expenses-group/dialog/add-expense-dialog/add-expense-dialog.component';
+import { EditExpenseDialogComponent } from './expenses-group/dialog/edit-expense-dialog/edit-expense-dialog.component';
 
 @NgModule({
   declarations: [
     ExpenseComponent,
-    AddExpenseDialogComponent
+    AddExpenseDialogComponent,
+    EditExpenseDialogComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { AddExpenseDialogComponent } from './expenses-group/dialog/add-expense-d
     ReactiveFormsModule,
     MatExpansionModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule
   ],
   exports: [
     ExpenseComponent,
