@@ -78,7 +78,6 @@ export class ExpenseComponent implements OnInit {
         }
       })
       const dialogRef = this.dialog.open(AddExpenseDialogComponent, {
-        width: '20%',
         data: {
           groupId: this.groupId,
           userGroupId: this.userGroupId,

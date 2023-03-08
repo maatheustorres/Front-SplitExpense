@@ -13,6 +13,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { DebtsComponent } from '../expense/debts/debts.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { DebtsComponent } from '../expense/debts/debts.component';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    MatTooltipModule
   ],
   exports: [
     GroupComponent,

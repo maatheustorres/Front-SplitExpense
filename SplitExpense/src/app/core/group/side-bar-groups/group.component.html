@@ -10,11 +10,11 @@
     <mat-list *ngIf="pagination.totalCount > 0">
       <mat-list-item><b>{{pagination.totalCount}} grupos recentes</b></mat-list-item>
       <mat-list-item *ngFor="let item of pagination.items">
-        <a routerLink="/expense/expense-group/{{item.id}}/user-group/{{item.userGroupId}}" style="text-decoration: none; color: #000">
+        <a routerLink="/expense/expense-group/{{item.id}}/user-group/{{item.userGroupId}}" matTooltip="Ver detalhes do grupo">
           {{item.name}}
         </a>
       </mat-list-item>
-      <mat-list-item *ngIf="pagination.totalCount > 10"><a href="">Ver todos os grupos</a></mat-list-item>
+      <mat-list-item><a href=""><mat-icon>settings</mat-icon> Configurar grupos</a></mat-list-item>
     </mat-list>
     <mat-list *ngIf="pagination.totalCount === 0">
       <mat-list-item>Nenhum grupo encontrado</mat-list-item>

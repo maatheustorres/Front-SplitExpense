@@ -4,7 +4,9 @@ import { CreateExpenseRequest } from 'src/app/models/request/create-expense-requ
 import { splitExpenseRequest } from 'src/app/models/request/split-expense-request';
 import { UpdateExpenseRequest } from 'src/app/models/request/update-expense-request';
 import { CreateExpense } from 'src/app/models/response/create-expense';
+import { Debts } from 'src/app/models/response/debts';
 import { Expense } from 'src/app/models/response/expense';
+import { ExpenseToBeReceived } from 'src/app/models/response/expense-to-be-received';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -47,5 +49,13 @@ export class ExpenseService {
 
   splitExpense(expenseId: string, expense: splitExpenseRequest) {
     return this.http.post(`${this.baseUrl}/expense/splitexpense/${expenseId}`, expense, this.createHttpOptions());
+  }
+
+  getDebtsByUserId(userId: string) {
+    return this.http.get<Debts[]>(`${this.baseUrl}/expense/debts/${userId}`, this.createHttpOptions())
+  }
+
+  getExpensesToBeReceivedByUserId(userId: string) {
+    return this.http.get<ExpenseToBeReceived[]>(`${this.baseUrl}/expense/expenseToBeReceived/${userId}`, this.createHttpOptions());
   }
 }

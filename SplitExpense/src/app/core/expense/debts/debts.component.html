@@ -1,1 +1,67 @@
-<p>debts works!</p>
+<div class="container">
+  <div class="row" *ngIf="debts">
+    <div class="col-xs-12">
+      <h3 class="text-center">{{debts.length > 1 ? "Despesas" : "Despesa"}} em aberto</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ng-container *ngIf="debts">
+        <ng-container *ngFor="let item of debts">
+          <mat-accordion class="headers-align" multi>
+            <mat-expansion-panel expanded="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Pagar para: &nbsp;<b> {{item.userToReceive}}</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <b> Valor a pagar: {{item.totalExpense | currency: 'BRL'}}</b>
+                  <mat-icon style="color:red">highlight_off</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-divider></mat-divider>
+              <p>Você deve <b>{{item.payTo | currency: 'BRL'}}</b> para <b>{{item.userToReceive}}</b>. Despesa criada no grupo <b>{{item.groupName}}.</b></p>
+              <mat-divider></mat-divider>
+              <br>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row" *ngIf="expensesToBeReceived">
+    <div class="col-xs-12">
+      <h3 class="text-center">{{expensesToBeReceived.length > 1 ? "Valores" : "Valor"}} a receber em aberto</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ng-container *ngIf="expensesToBeReceived">
+        <ng-container *ngFor="let item of expensesToBeReceived">
+          <mat-accordion class="headers-align" multi>
+            <mat-expansion-panel expanded="true">
+              <mat-expansion-panel-header>
+              </mat-expansion-panel-header>
+              <mat-divider></mat-divider>
+              <p>Você tem um valor para receber de <b>{{item.totalExpense | currency: 'BRL'}}</b> no grupo <b>{{item.groupName}}.</b></p>
+              <mat-divider></mat-divider>
+              <br>
+              <div class="row">
+                <div class="col-xs-2" style="display: flex; justify-content: space-around; align-items:center;">
+                  <a mat-raised-button
+                     color="primary"
+                     routerLink="/expense/expense-group/{{item.groupId}}/user-group/{{item.userGroupId}}">Ver detalhes</a>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row" *ngIf="!debts && !expensesToBeReceived">
+    <div class="col-xs-12">
+      <h3 class="text-center">Nenhuma despesa em aberto.😁</h3>
+    </div>
+  </div>
+</div>

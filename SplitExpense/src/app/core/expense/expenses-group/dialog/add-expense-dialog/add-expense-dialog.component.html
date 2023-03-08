@@ -1,11 +1,15 @@
 <h1 mat-dialog-title>Adicionar despesa</h1>
 <mat-dialog-content *ngIf="users" >
   <form [formGroup]="expenseForm">
-    <mat-form-field appearance="fill">
-      <input type="number" matInput required formControlName="totalExpense" placeholder="0.00" width="100%" autocomplete="off">
-      <mat-error>Valor é um campo obrigatório</mat-error>
-      <mat-icon matPrefix>attach_money</mat-icon>
-    </mat-form-field>
+    <div class="row">
+      <div class="col-xs-12">
+        <mat-form-field appearance="fill">
+          <input type="number" matInput required formControlName="totalExpense" placeholder="0.00" width="100%" autocomplete="off">
+          <mat-error>Valor é um campo obrigatório</mat-error>
+          <mat-icon matPrefix>attach_money</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
     <mat-divider></mat-divider>
     <h4>Adicionar usuários na despesa</h4>
     <ul>
