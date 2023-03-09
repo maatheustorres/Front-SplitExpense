@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GroupRoutingModule } from './group-routing.module';
-import { GroupComponent } from './side-bar-groups/group.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CreateComponent } from './create/create.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +13,13 @@ import { AddUsersComponent } from './add-users/add-users.component';
 import { DebtsComponent } from '../expense/debts/debts.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTableModule} from '@angular/material/table';
+
+import { GroupComponent } from './side-bar-groups/group.component';
+import { CreateComponent } from './create/create.component';
+import { GroupDetailsComponent } from './group-details/group-details.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -23,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     DebtsComponent,
     CreateComponent,
     AddUsersComponent,
+    GroupDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -36,11 +42,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSelectModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     GroupComponent,
     DebtsComponent,
+    GroupDetailsComponent
   ]
 })
 export class GroupModule { }

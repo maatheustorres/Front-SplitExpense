@@ -14,7 +14,7 @@
           {{item.name}}
         </a>
       </mat-list-item>
-      <mat-list-item><a href=""><mat-icon>settings</mat-icon> Configurar grupos</a></mat-list-item>
+      <mat-list-item><a routerLink="/group/details"><mat-icon>settings</mat-icon> Configurar grupos</a></mat-list-item>
     </mat-list>
     <mat-list *ngIf="pagination.totalCount === 0">
       <mat-list-item>Nenhum grupo encontrado</mat-list-item>
